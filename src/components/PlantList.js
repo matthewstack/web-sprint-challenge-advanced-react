@@ -12,10 +12,17 @@ export default class PlantList extends Component {
 
   /*********  DON'T CHANGE ANYTHING IN THE RENDER FUNCTION *********/
   componentDidMount() {
-    axios.get("http://localhost:3333/plants").then((res) => {
-      console.log(res.data);
-      this.setState({ plants: res.data });
-    });
+    axios
+      .get("http://localhost:3333/plants")
+      .then((res) => {
+        this.setState({
+          ...this.state,
+          plants: res.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   render() {
     return (
